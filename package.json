@@ -1,0 +1,26 @@
+{
+  "name": "project-euler-solutions",
+  "version": "0.0.1",
+  "description": "Solutions to project euler problems",
+  "main": "run.js",
+  "scripts": {
+    "start": "tsc && node ./build/run.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "real": "tsc && node ./build/run.js --mode real",
+    "try": "ts-node ./tryout.ts"
+  },
+  "keywords": [
+    "euler",
+    "problems",
+    "solutions"
+  ],
+  "author": "Wekoslav Stefanovski",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^10.11.7"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
