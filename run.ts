@@ -19,11 +19,16 @@ async function run() {
         const dynmodule = await import(`./problems/${id}`);
         const solution: Problem = dynmodule.default;
 
-        const inputArray = realMode === "demo" ? solution.input.demo : [solution.input.real]
+        const inputArray = realMode === "demo" ? solution.input.demo : [solution.input.real];
 
         for (const input of inputArray) {
             const start = performance.now();
-            const result = solution.run(input);
+            let result: number;
+            if (solution.isAsync) {
+                result = await solution.run(input);
+            } else {
+                result = solution.run(input) as number;
+            }
             const end = performance.now();
             console.log(`Runtime is ${(end - start) | 0}ms`);
             if (realMode === "demo") {

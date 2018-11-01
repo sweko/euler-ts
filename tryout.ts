@@ -1,12 +1,8 @@
 import "./helpers/array-prototype-helpers";
-import { getCombinations, getCombinationsGenerator } from "./helpers/combinations";
+import { generatePrimesDivision, generatePrimeSieve } from "./helpers/primes";
+import { performance } from "perf_hooks";
 
-console.log(getCombinations([3, 7, 109, 673], 2).map(comb => comb.join("")));
-
-const iterable = getCombinationsGenerator([3, 7, 109, 673], 2);
-
-let value = iterable.next();
-while (!value.done) {
-    console.log(value.value);
-    value = iterable.next();
-};
+const start = performance.now();
+generatePrimeSieve(2000000);
+const end = performance.now();
+console.log(`Runtime is ${(end - start) | 0}ms`);

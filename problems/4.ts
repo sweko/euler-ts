@@ -1,5 +1,4 @@
 import { Problem } from "../model/problem";
-import { generatePrimes } from "../helpers/primes";
 
 export class PalindromeProduct implements Problem<number> {
     get id() {
