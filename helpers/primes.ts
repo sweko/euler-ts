@@ -35,7 +35,11 @@ export const generatePrimesDivision = limit => {
 
 // Sieve of Eratosthenes
 export const generatePrimeSieve = limit => {
+
+    console.log(`Generating primes up to ${limit}. Up to ${maxLimit} available`);
+
     if (limit < maxLimit) {
+        console.log("slice and dice");
         return Array.from(primeCache.filter(prime => prime < limit).sort((a, b) => a - b));
     }
 

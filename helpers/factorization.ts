@@ -9,7 +9,9 @@ export type Factorization = Factor[];
 
 export const factorize = (input: number) => {
     const primes = generatePrimes(input);
+    console.log("done slicing and dicing");
     const factors = primes.filter(prime => input % prime === 0);
+    console.log("done slicing and dicing2");
 
     const result: Factorization = [];
     for (const prime of factors) {
@@ -49,3 +51,6 @@ export const getFactorizedLCD = (first: Factorization, second: Factorization) =>
 
 export const getNumber = (factors: Factorization) =>
     factors.reduce((acc, factor) => acc * factor.prime ** factor.cardinality, 1);
+
+export const getDivisorCount = (factors: Factorization) =>
+    factors.reduce((acc, factor) => acc * (factor.cardinality + 1), 1);

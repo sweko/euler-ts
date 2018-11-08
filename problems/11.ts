@@ -19,7 +19,7 @@ export class LargestGridProduct implements Problem<number> {
     get input() {
         return {
             demo: [4],
-            demoResult: [0],
+            demoResult: [70600674],
             real: 4,
         };
     }
@@ -78,23 +78,41 @@ export class LargestGridProduct implements Problem<number> {
             }
         }
 
-        // // top-left
-        // for (let hindex = 0; hindex < height - input + 1; hindex++) {
-        //     for (let windex = 0; windex < width - input + 1; windex++) {
-        //         const product = this.data
-        //             .map(line => line[windex])
-        //             .slice(hindex, hindex + input)
-        //             .reduce((acc, item) => acc * item, 1);
+        // top-left
+        for (let hindex = 0; hindex < height - input + 1; hindex++) {
+            for (let windex = 0; windex < width - input + 1; windex++) {
+                const product = this.data
+                    .slice(hindex, hindex + input)
+                    .map((line, index) => line[windex + index])
+                    .reduce((acc, item) => acc * item, 1);
 
-        //         if (product > maxProduct) {
-        //             console.log(`Vertically: [${hindex},${windex}]`);
-        //             console.log(this.data
-        //                 .map(line => line[windex])
-        //                 .slice(hindex, hindex + input));
-        //             maxProduct = product;
-        //         }
-        //     }
-        // }
+                if (product > maxProduct) {
+                    console.log(`Diagonally top-left: [${hindex},${windex}]`);
+                    console.log(this.data
+                        .slice(hindex, hindex + input)
+                        .map((line, index) => line[windex + index]));
+                    maxProduct = product;
+                }
+            }
+        }
+
+        // top-right
+        for (let hindex = 0; hindex < height - input + 1; hindex++) {
+            for (let windex = input - 1; windex < width; windex++) {
+                const product = this.data
+                    .slice(hindex, hindex + input)
+                    .map((line, index) => line[windex - index])
+                    .reduce((acc, item) => acc * item, 1);
+
+                if (product > maxProduct) {
+                    console.log(`Diagonally top-right: [${hindex},${windex}]`);
+                    console.log(this.data
+                        .slice(hindex, hindex + input)
+                        .map((line, index) => line[windex - index]));
+                    maxProduct = product;
+                }
+            }
+        }
 
         return maxProduct;
     }
